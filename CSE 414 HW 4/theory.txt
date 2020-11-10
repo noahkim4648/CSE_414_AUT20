@@ -1,0 +1,64 @@
+a. (10 points) R(A,B,C,D,E) with functional dependencies D → B, CE → A.
+	Iteration 1
+    R(A,B,C,D,E) {C,E}+ = {C,E,A}
+    R1(C,E,A) R2(B,C,D,E)
+    
+    iteration 2
+    {D}+ = {D,B}
+    R1(C,E,A) R2(D,B) R3(E,C,D)
+    
+    iteration 3
+    Can't find any X such that X!= X+ and X!= {Attributes} so the BCNF is 
+    R1(C,E,A) R2(D,B) R3(E,C,D)
+
+
+
+b. (10 points) S(A,B,C,D,E) with functional dependencies A → E, BC → A, DE → B.
+    Iteration 1 BC -> A
+    S(A,B,C,D,E) {B,C}+ = {B,C,E,A}
+    
+    iteration 2 A-> E
+    S1(B,C,E,A) S2(B,C,D) DE does not exist anymore so will test A - > E 
+    {A}+ = {A,E}
+    S1(B,C,E,A) S2(B,C,D) {A}+ = {A,E}
+    S1(B,C,A) S2(B,C,D) S3(A,E)
+
+    Iteration 3 
+    Can't find any X such that X!= X+ and X!= {Attributes} so the BCNF is
+    S1(B,C,A) S2(B,C,D) S3(A,E)
+
+A set of attributes X is called closed (with respect to a given set of functional dependencies) if 
+X⁺ = X. Consider a relation with schema R(A,B,C,D) and an unknown set of functional dependencies. For each closed attribute set below, 
+give a set of functional dependencies that is consistent with it.
+
+c. (5 points) All subsets of {A,B,C,D} are closed.
+    If I had a FD B - > C then {B}+ = {B, C} != {A} so having a functional dependency implies that 
+    the set on the left side of the FD will not be closed so to have all subsets closed for {A,B,C,D}
+    there should be Zero Functional dependencies (only trivial dependencies exist)
+
+d. (5 points) The only closed subsets of {A,B,C,D} are {} and {A,B,C,D}.
+    A -> B
+    B -> C 
+    C -> D
+    D -> A 
+    If one attribute on the left side of the FD for example X, then all attributes will be on the right in X+
+    {A}+ = {A,B,C,D} so for this case only closed attributes will be {} and {A,B,C,D} so the required FDs are 
+    the ones shown above.
+
+e. (5 points) The only closed subsets of {A,B,C,D} are {}, {B,C}, and {A,B,C,D}.
+    B -> C 
+    C -> B
+    This results in 
+    {B}+ = {B,C} not closed
+    {C}+ = {B,C} not closed 
+    {B, C}+ = {B,C} closed
+    {A}+ = {A} closed 
+    {D}+ = {D} closed 
+     A -> BCD
+     D -> ABC 
+
+     required FDs are 
+     B -> C 
+     C -> B 
+     A -> BCD 
+     D -> ABC 
